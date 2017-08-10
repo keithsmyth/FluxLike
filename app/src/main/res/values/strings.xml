@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">FluxLike</string>
+    <string name="buy">BUY</string>
+    <string name="option_text">%1$s \t\t\t $%2$.2f</string>
+</resources>
