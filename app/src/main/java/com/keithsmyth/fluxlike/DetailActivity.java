@@ -36,18 +36,22 @@ public class DetailActivity extends AppCompatActivity {
 
         // subscribe adapter features to store
         new FeatureControllerGroup(adapter, this,
-            Arrays.asList(
-                new HeaderController(viewModelProvider, dispatcher),
-                new OptionsController(viewModelProvider, dispatcher)
-            ));
+                Arrays.asList(
+                        new HeaderController(viewModelProvider, dispatcher),
+                        new OptionsController(viewModelProvider, dispatcher)
+                ));
 
         // init data
-        viewModelProvider.get(DetailActivityViewModel.class).init(dispatcher);
+        viewModelProvider.get(DetailActivityViewModel.class)
+                .actions
+                .observe(this, dispatcher::dispatch);
     }
 
     @Override
-    protected void onDestroy() {
-        dispatcher.clear();
-        super.onDestroy();
+    protected void onStop() {
+        super.onStop();
+        if (isFinishing()) {
+            dispatcher.clear();
+        }
     }
 }
