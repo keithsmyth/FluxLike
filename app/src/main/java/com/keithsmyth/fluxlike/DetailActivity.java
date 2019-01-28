@@ -1,7 +1,5 @@
 package com.keithsmyth.fluxlike;
 
-import android.arch.lifecycle.LifecycleRegistry;
-import android.arch.lifecycle.LifecycleRegistryOwner;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
@@ -17,16 +15,9 @@ import com.keithsmyth.fluxlike.features.options.OptionsController;
 
 import java.util.Arrays;
 
-public class DetailActivity extends AppCompatActivity implements LifecycleRegistryOwner {
-
-    private final LifecycleRegistry registry = new LifecycleRegistry(this);
+public class DetailActivity extends AppCompatActivity {
 
     private Dispatcher dispatcher;
-
-    @Override
-    public LifecycleRegistry getLifecycle() {
-        return registry;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +26,7 @@ public class DetailActivity extends AppCompatActivity implements LifecycleRegist
 
         Adapter adapter = new Adapter();
 
-        RecyclerView recycler = (RecyclerView) findViewById(R.id.recycler);
+        RecyclerView recycler = findViewById(R.id.recycler);
         recycler.setHasFixedSize(true);
         recycler.setLayoutManager(new LinearLayoutManager(this));
         recycler.setAdapter(adapter);
